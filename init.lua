@@ -1,4 +1,4 @@
-require("vim._core.ui2").enable({})
+require('vim._core.ui2').enable({})
 
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
@@ -21,3 +21,5 @@ vim.keymap.set("i", "<C-Del>", "X<Esc>lbcE", { silent = true })
 vim.keymap.set("i", "<C-<BS>>", "<C-W>")
 
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n><leader>td", {silent = false, desc = "Escape Terminal Mode"})
+
+vim.keymap.set("n", "<leader>m", "<cmd>lua vim.diagnostic.open_float()<cr>", {desc="Diagnostic message"})
