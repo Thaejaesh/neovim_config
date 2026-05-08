@@ -1,26 +1,33 @@
 return{
   "nvzone/floaterm",
+  lazy = false,
   dependencies = "nvzone/volt",
-  opts = {},
   cmd = "FloatermToggle",
   keys = {
     { "<leader>o", "<cmd>FloatermToggle<CR>", desc="Toggle Float Terminal"}
   },
+  opts = {},
   config = function ()
-    -- Optional: Nice Defaults
-    vim.g.floaterm_width = 0.9
-    vim.g.floaterm_height = 0.8
-    vim.g.floaterm_position = "center"
+    require("floaterm").setup({
+      border = false,
+      size = {h = 80, w = 75,},
 
-    -- Keep terminal alive after commands exit
-    vim.g.floaterm_autoclose = 0
+    })
+    vim.api.nvim_create_autocmd("TermOpen", {
+        pattern = "term://*",
+        callback = function()
+          local opts_map = { buffer = 0 }
 
-    -- Hide instead of destroy when toggled
-    vim.g.floaterm_autohide = 1
+          -- Map Escape to exit Terminal Mode and enter Normal Mode
+          -- Now you can press Esc, then use :q or your toggle bind to close
+          vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts_map)
 
-    -- Optional: make PowerShell behave better interactively
-    vim.g.floaterm_shellcmdFlag = "-NoLogo"
+          -- Optional: Map jk or jj to escape if you use those in normal files
+          vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts_map)
 
-
+          -- Ensure the buffer stays alive in the background
+          vim.opt_local.bufhidden = "hide"
+        end,
+      })
   end,
 }
