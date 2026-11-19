@@ -4,7 +4,7 @@ return{
   dependencies = "nvzone/volt",
   cmd = "FloatermToggle",
   keys = {
-    { "<leader>o", "<cmd>FloatermToggle<CR>", desc="Toggle Float Terminal"}
+    { "<leader>ot", "<cmd>FloatermToggle<CR>", desc="Toggle Float Terminal"}
   },
   opts = {},
   config = function ()

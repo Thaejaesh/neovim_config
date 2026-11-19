@@ -14,7 +14,7 @@ return {
       },
       editor = {
         override_terminal = true,
-        transparent_background = false,
+        transparent_background = true,
         sign = { color = "none" },
         float = {
           color = "mantle",
@@ -53,7 +53,7 @@ return {
           incsearch = { "italic", "reverse" },
           keyword = { "italic" },
           spell = { "underline" },
-          comment = {},
+          comment = { "italic" },
         },
         overrides = {},
       })
